@@ -1,0 +1,5 @@
+div.loading p{
+  content: attr(src);
+  width: 200px;
+  height: 100px;
+}

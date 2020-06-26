@@ -8,6 +8,49 @@
   <link rel="icon" type="image/x-icon" href="favicon.ico">
 </head>
 <body>
-  <app-root></app-root>
+  <app-root>
+    <div class="loading">
+      <p>
+  Loading Pages.....
+      </p>
+    </div>
+  </app-root>
+  <div>
+    <!-- <p>
+Loading Pages
+    </p> -->
+    <!--
+    <script >
+        var a = "sdfsfd1";
+        alert(a);
+    </script>
+    <script type="module" >
+      var a = "sdfsfd";
+      // alert(this);
+      alert(a);
+    </script>
+
+    <span>
+
+    </span>
+    <script type="module">
+      // alert("Runs in modern browsers");
+    </script>
+
+    <script nomodule>
+      alert("Modern browsers know both type=module and nomodule, so skip this")
+      alert("Old browsers ignore script with unknown type=module, but execute this.");
+    </script>
+    -->
+    <!-- <button id="save1"> Save</button> -->
+    <!-- <script  type="text/javascript"> -->
+    <script type="module">
+      function getimport(){
+        return "m.js";
+      }
+      import {sayHi } from getimport();
+      alert(123);
+    </script>
+  </div>
 </body>
 </html>

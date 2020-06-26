@@ -1,0 +1,8 @@
+<p>heros works!</p>
+
+<ul>
+    <li *ngFor="let h of heros"  [routerLink]="h.id">{{h.name}}</li>
+    <li *ngFor="let h of heros" >
+        <a [routerLink]="['/hero',h.id]">{{h.name}}</a>
+    </li>
+</ul>

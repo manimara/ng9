@@ -1,0 +1,17 @@
+<p>hero works!</p>
+<p>
+    Here is my Hero id {{id}}
+    : {{this._hero}}
+    : {{this.myid}} 
+    <br/>
+    my Value: {{this.hero$ | async}}
+    idVal : {{this.idVal}}
+</p>
+
+<p>
+    <a [routerLink]='["/heros", this.next]'>
+        Next
+    </a>
+   
+   <a (click)=gotoHeros()>got to heros</a>
+</p>
