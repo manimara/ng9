@@ -1,23 +1,29 @@
 <p>reactiv works!</p>
-<form>
+<form [formGroup]="signupForm" (submit)="onSubmit()">
   <div>
-  <input type="email" name="email"
-
-     required>
-      </div>
+    <label for="">Email :</label><input type="email" name="email" required
+    formControlName="email"
+    >
+    <span *ngIf="!signupForm.get('email').valid && signupForm.get('email').touched">
+      Please fill the valid email address
+    </span>
+  </div>
   <div>
-    <select name="learn" id="learn" required >
-      <option *ngFor="let option of learningOptions">{{option}}</option>
+    <label for="">Learn :</label><select name="learn" id="learn" required
+    formControlName="learn"
+    >
+      <option *ngFor="let option of learningOptions" [value]="option">{{option}}</option>
     </select>
   </div>
   <div>
-    <input type="password" name="pass" required>
+    <label for="">Pass :</label>
+    <input type="password" name="pass" required
+    formControlName="pass"
+    >
   </div>
-  <button >Submit</button>
+  <button>Submit</button>
 
   <div *ngIf="isSubmitted">
     {{userData | json}}
   </div>
 </form>
-
-

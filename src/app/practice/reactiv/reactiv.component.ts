@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-// import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-reactiv',
@@ -11,11 +11,20 @@ export class ReactivComponent implements OnInit {
   defaultLearningOption = 'Advanced';
   isSubmitted = false;
   userData : Object = {};
-  // signupForm : FormGroup;
+  signupForm : FormGroup;
   constructor() { }
 
   ngOnInit(): void {
-    // this.signupForm =
+    this.signupForm = new FormGroup({
+      'email' : new FormControl('initial Value',[Validators.required, Validators.email ],),
+      'pass' : new FormControl(),
+      'learn' : new FormControl(),
+
+    });
+  }
+  onSubmit(){
+    console.log(this.signupForm);
+
   }
 
 }
