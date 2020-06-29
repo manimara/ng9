@@ -1,18 +1,9 @@
 <p>practice works!</p>
-<form #f="ngForm" (submit)="onsubmit1()" novalidate>
-  <div> <input type="email" name="email" id="email" ngModel required></div>
-  <div>
-    <select name="learn" id="learn" ngModel required >
-      <option *ngFor="let option of learningOptions">{{option}}</option>
-    </select>
-  </div>
-  <div>
-    <input type="password" name="pass" ngModel required>
-  </div>
-  <button >Submit</button>
+<div>
 
+  <a routerLink="template">Template Form</a>
+</div>
   <div>
-    {{userData | json}}
+    <a routerLink="reactive">Reactive</a>
   </div>
-</form>
-
+<router-outlet></router-outlet>

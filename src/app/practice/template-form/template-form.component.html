@@ -1,1 +1,18 @@
 <p>template-form works!</p>
+<form #f="ngForm" (submit)="onsubmit1()" novalidate>
+  <div> <input type="email" name="email" id="email" ngModel required></div>
+  <div>
+    <select name="learn" id="learn" [ngModel]="defaultLearningOption" required >
+      <option *ngFor="let option of learningOptions">{{option}}</option>
+    </select>
+  </div>
+  <div>
+    <input type="password" name="pass" ngModel required>
+  </div>
+  <button >Submit</button>
+
+  <div *ngIf="isSubmitted">
+    {{userData | json}}
+  </div>
+</form>
+

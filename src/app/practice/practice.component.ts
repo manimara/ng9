@@ -16,26 +16,7 @@ export class PracticeComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    // this.signupForm.controls.learn.setValue(this.defaultLearningOption);
-    this.signupForm.form.patchValue({
-      userData : {
-        learn : this.defaultLearningOption
-      }
-    })
-  }
 
-  onsubmit(f : NgForm){
-    // debugger;
-    console.log(f);
-  }
-
-  onsubmit1(){
-    // debugger;
-    console.log(this.signupForm);
-    this.userData.email = this.signupForm.value.email;
-    this.userData.learn = this.signupForm.value.learn;
-    this.userData.pass = this.signupForm.value.pass;
-    this.signupForm.reset();
   }
 
 }
