@@ -1,1 +1,23 @@
 <p>reactiv works!</p>
+<form>
+  <div>
+  <input type="email" name="email"
+
+     required>
+      </div>
+  <div>
+    <select name="learn" id="learn" required >
+      <option *ngFor="let option of learningOptions">{{option}}</option>
+    </select>
+  </div>
+  <div>
+    <input type="password" name="pass" required>
+  </div>
+  <button >Submit</button>
+
+  <div *ngIf="isSubmitted">
+    {{userData | json}}
+  </div>
+</form>
+
+
