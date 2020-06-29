@@ -12,10 +12,10 @@ import { RouterOutlet } from '@angular/router';
 export class AppComponent {
   title = 'ng9';
 
-  getAnimationData(outlet : RouterOutlet){
-    console.log(outlet.activatedRoute);
+  // getAnimationData(outlet : RouterOutlet){
+  //   console.log(outlet.activatedRoute);
 
-    return outlet && outlet.activatedRoute &&
-      outlet.activatedRoute["animation"];
-  }
+  //   return outlet && outlet.activatedRoute &&
+  //     outlet.activatedRoute["animation"];
+  // }
 }

@@ -22,6 +22,10 @@ const routes: Routes = [
       animations : 'hero'
     }
   },
+  {
+    path: 'practice',
+    loadChildren: () => import('./practice/practice.module').then(m => m.PracticeModule),
+  },
   { path: '**', component: MainComponent },
   {
     path: '',
