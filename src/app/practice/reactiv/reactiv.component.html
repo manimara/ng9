@@ -1,30 +1,43 @@
 <p>reactiv works!</p>
-<form [formGroup]="signupForm" (submit)="onSubmit()">
+<form [formGroup]="signupForm" (submit)="onSubmit()"
+ [ngClass]="{'issubmitting': issubmitting}">
   <div>
-    <label for="">Email :</label><input type="email" name="email" required
-    formControlName="email"
-    >
+    <label for="">Email :</label>
+    <input type="email" name="email" required
+    [ngClass]="{ 'show-error': (firstErrorControlName === 'email') }"
+    formControlName="email">
     <span *ngIf="!signupForm.get('email').valid && signupForm.get('email').touched">
       Please fill the valid email address
     </span>
   </div>
+  <input type="text" name="fname" disabled formControlName="fname" value="fname.value"
+    >
   <div>
     <label for="">Learn :</label><select name="learn" id="learn" required
-    formControlName="learn"
-    >
-      <option *ngFor="let option of learningOptions" [value]="option">{{option}}</option>
+    formControlName="learn" [ngClass]="{
+      'show-error': (firstErrorControlName === 'learn')}">
+      <option [ngValue]="">-- Select --</option>
+      <option *ngFor="let option of learningOptions" [ngValue]="option">{{option}}</option>
     </select>
   </div>
   <div>
     <label for="">Pass :</label>
     <input type="password" name="pass" required
     formControlName="pass"
+    [ngClass]="{
+      'show-error': (firstErrorControlName === 'pass')
+    }"
     >
+  </div>
+  <div>
+    <label for="">Value :</label>
+    <input type="text" name="pass1" formControlName="pass1"
+    required >
   </div>
   <div class="form-group"   formArrayName="hobbies">
     <label for="hobbies">hobbies</label>
     <button (click)="onAddHobbies()">Add Hobby</button>
-    <div *ngFor="let hobbyControl of getAllControls(); let i =index">
+    <div *ngFor="let hobbyControl of signupForm.get('hobbies'); let i =index">
       <input type="text" [formControlName]="i">
     </div>
   </div>

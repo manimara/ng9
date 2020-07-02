@@ -4,3 +4,8 @@ padding : 5px
 input.ng-invalid.ng-touched{
   border: 1px solid red;
 }
+
+input.ng-invalid.show-error{
+  border: 2px solid green;
+}
+
