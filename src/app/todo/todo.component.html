@@ -1,0 +1,22 @@
+<p>Todos</p>
+<div>
+  <div *ngFor="let todo of todos">
+    <input type="checkbox" [checked]="todo.checked">
+    <label for="">{{todo.desc}}</label>
+  </div>
+  <button (click)="todoAddSubmit(tForm)"> Add Todo Submit</button>
+
+  <div>
+    <button (click)="showTodoForm()">Add Todo</button>
+    <form #tForm (submit)="todoAddSubmit(tForm)">
+      <div *ngIf="addTodoInitiated && !addTodoFormSubmitted">
+        <input type="checkbox" name="checked" ngModel>
+        <input type="text" name="desc" ngModel>
+        <button>Add</button>
+      </div>
+    </form>
+  </div>
+
+</div>
+
+<button (click)="getAllTodosFromSirestore()">Firestore</button>

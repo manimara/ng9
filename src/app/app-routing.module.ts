@@ -26,6 +26,10 @@ const routes: Routes = [
     path: 'practice',
     loadChildren: () => import('./practice/practice.module').then(m => m.PracticeModule),
   },
+  {
+    path: 'todo',
+    loadChildren: () => import('./todo/todo.module').then(m => m.TodoModule),
+  },
   { path: '**', component: MainComponent },
   {
     path: '',
