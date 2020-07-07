@@ -1,22 +1,31 @@
 <p>Todos</p>
 <div>
   <div *ngFor="let todo of todos">
+    <!-- <input type="text"  disabled []="todo.checked"> -->
+    <!-- <span>{{todo | json}}</span> -->
     <input type="checkbox" [checked]="todo.checked">
-    <label for="">{{todo.desc}}</label>
+    <span for="" contentEditable>{{todo.desc}}</span>
   </div>
-  <button (click)="todoAddSubmit(tForm)"> Add Todo Submit</button>
+  <div *ngFor="let todo of todosAsync$ | async">
+    <!-- <input type="text"  disabled []="todo.checked"> -->
+    <!-- <span>{{todo | json}}</span> -->
+    <input type="checkbox" [checked]="todo.checked">
+    <span for="" contentEditable>{{todo.desc}}</span>
+  </div>
+  <!-- <button (click)="todoAddSubmit(tForm)"> Add Todo Submit</button> -->
 
   <div>
-    <button (click)="showTodoForm()">Add Todo</button>
-    <form #tForm (submit)="todoAddSubmit(tForm)">
+    <form #tForm="ngForm" (submit)="todoAddSubmit(tForm)">
       <div *ngIf="addTodoInitiated && !addTodoFormSubmitted">
+        <input type="text" disabled name="id" ngModel>
         <input type="checkbox" name="checked" ngModel>
         <input type="text" name="desc" ngModel>
         <button>Add</button>
       </div>
     </form>
+    <button (click)="showTodoForm()">Add new Todo</button>
   </div>
-
+<button (click)="updateTodo()">Update Value1</button>
 </div>
 
-<button (click)="getAllTodosFromSirestore()">Firestore</button>
+<!-- <button (click)="getAllTodosFromSirestore()">Firestore</button> -->

@@ -13,7 +13,7 @@ import { Observable } from 'rxjs';
 })
 export class TodoComponent implements OnInit {
   todos: Array<any> = [];
-  todosAsync$ = Observable;
+  todosAsync$ : Observable<Todo[]>;
   itemsRef: any;
   items: any;
   todoForm: NgForm;
@@ -55,26 +55,29 @@ export class TodoComponent implements OnInit {
     this.initiateAddtodo(true);
   }
 
-  todoAddSubmit(tForm: ElementRef){
+  todoAddSubmit(tForm: NgForm){
     // console.log(this)
-    let data = {}
-    data['desc'] = tForm['desc'].value;
-    data['checked'] = tForm['checked'].value;
+    let data = {desc:'',checked:false};
+    data.desc = tForm.value.desc;
+    data.checked = tForm.value.checked;
     this.addTodo(data);
     this.submitAddtodo(true);
     this.initiateAddtodo(false);
-    tForm['desc'].value = "";
-    tForm['checked'].checked = false;
+    tForm.reset();
   }
   readData() {
-    this.afs.firestore.collection('todos').get().then(aa => {
-      aa.forEach(doc => {
+    this.afs.firestore.collection('todos').get().then(aa =>{
+       console.log(aa);
+       var i = 1;
+      aa.forEach((doc: any) =>  {
+        console.log(doc)
         setTimeout(() => {
           this.todos.push(doc.data());
           // this.todosAsync$.
           // console.log(doc.id, "is the id and the data is ", doc.data());
-        },5000 );
-      })
+        },500 * i);
+        i++;
+      });
     });
   }
 
@@ -84,6 +87,23 @@ export class TodoComponent implements OnInit {
     }).catch(e => {
       console.log(e);
     })
+  }
+
+  updateTodo() {
+    // this.afs.firestore.collection('todos/171ysJlncEnowVjSjNbb')
+    // this.afs.firestore.collection('todos').where('id', '==','171ysJlncEnowVjSjNbb')
+    let docid = '171ysJlncEnowVjSjNbb';
+    this.afs.firestore.collection('todos').doc(docid)
+    .get()
+      .then(a => {
+        console.log(a.data());
+      })
+      .catch(e => {
+        debugger;
+        console.log(e);
+      })
+    // where('id','==','')
+
   }
 
   getAllTodosFromSirestore() {
