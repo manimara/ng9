@@ -1,0 +1,26 @@
+input:focus{
+  // border: 1px solid grey;
+}
+
+input{
+  // border: none;
+}
+
+.delete-btn{
+  // float: left;
+  // visibility: none;
+  display: none;
+  position: relative;
+  // top:5px;
+  left:-15px;
+}
+
+.container-1{
+  height: 25px;
+}
+.container-1:hover .delete-btn{
+  display: inline;
+  border: 1px solid red;
+  border-radius: 25%;
+  padding:0 2px;
+}

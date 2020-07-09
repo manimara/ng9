@@ -1,23 +1,32 @@
 <p>Todos</p>
+<span>
+  {{myEnvironemntValue}}
+</span>
 <div>
-  <div *ngFor="let todo of todos">
+  <div *ngFor="let todo of todos, let i=index" [id]="todo.id" class="container-1" (xfocusout)="focusoutParent(f)"
+    (change)="focusoutParent(f)" [attr.data-index]="i" #f
+    (keydown)="onKeyDown($event)"
+    (keyup)="onKeyUp($event)"
+    >
     <!-- <input type="text"  disabled []="todo.checked"> -->
     <!-- <span>{{todo | json}}</span> -->
-    <input type="checkbox" [checked]="todo.checked">
-    <span for="" contentEditable>{{todo.desc}}</span>
+    <input type="checkbox" [checked]="todo.checked" name="checked" (change)="focusoutParent(f)" >
+    <!-- <span for="" [contentEditable]="editable" (click)="onFocus()">{{todo.desc}}</span> -->
+    <!-- (click)="onClick()" -->
+    <input name="desc" class="" [value]="todo.desc"
+    (change)="focusoutParent(f)"
+     />
+    <div class="delete-btn">
+      <span (click)="onDeleteClick(f)">X</span>
+    </div>
   </div>
-  <div *ngFor="let todo of todosAsync$ | async">
-    <!-- <input type="text"  disabled []="todo.checked"> -->
-    <!-- <span>{{todo | json}}</span> -->
-    <input type="checkbox" [checked]="todo.checked">
-    <span for="" contentEditable>{{todo.desc}}</span>
-  </div>
+  <!-- <div>{{count}}</div> -->
+
   <!-- <button (click)="todoAddSubmit(tForm)"> Add Todo Submit</button> -->
 
   <div>
     <form #tForm="ngForm" (submit)="todoAddSubmit(tForm)">
       <div *ngIf="addTodoInitiated && !addTodoFormSubmitted">
-        <input type="text" disabled name="id" ngModel>
         <input type="checkbox" name="checked" ngModel>
         <input type="text" name="desc" ngModel>
         <button>Add</button>
@@ -25,7 +34,7 @@
     </form>
     <button (click)="showTodoForm()">Add new Todo</button>
   </div>
-<button (click)="updateTodo()">Update Value1</button>
+  <!-- <button (click)="updateTodo()">Update Value1</button> -->
 </div>
 
 <!-- <button (click)="getAllTodosFromSirestore()">Firestore</button> -->

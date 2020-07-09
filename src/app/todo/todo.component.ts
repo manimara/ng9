@@ -2,8 +2,9 @@ import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { Todo } from '../interface/todo';
 import { TodoServicesService } from '../services/todo-services.service';
 import { AngularFirestore } from '@angular/fire/firestore';
-import { FormBuilder, FormGroup, FormControl , NgForm } from '@angular/forms';
-import { Observable } from 'rxjs';
+import { FormBuilder, FormGroup, FormControl, NgForm } from '@angular/forms';
+import { Observable, interval } from 'rxjs';
+import { Timestamp } from 'rxjs/internal/operators/timestamp';
 
 
 @Component({
@@ -13,23 +14,27 @@ import { Observable } from 'rxjs';
 })
 export class TodoComponent implements OnInit {
   todos: Array<any> = [];
-  todosAsync$ : Observable<Todo[]>;
+  // todosAsync$ : Observable<Todo[]>;
+
   itemsRef: any;
   items: any;
   todoForm: NgForm;
   addTodoInitiated = false;
   addTodoFormSubmitted = false;
-  @ViewChild('tForm') todoFormRef : NgForm;
+  count: number = 0;
+  @ViewChild('tForm') todoFormRef: NgForm;
+  editable: boolean = false;
+  myEnvironemntValue: string;
   constructor(private todoservice: TodoServicesService,
-    private readonly afs: AngularFirestore) {
-    // fdb.list('/todos').query;
+    private readonly afs: AngularFirestore,
+    ) {
     console.log(afs);
   }
 
+
   ngOnInit(): void {
-    // this.todos = this.todoservice.getAllTodos();
     this.readData();
-    // this.todos = new FormGroup();
+    this.myEnvironemntValue = this.todoservice.getMyEnvironmentValue()
   }
 
   setData() {
@@ -42,43 +47,78 @@ export class TodoComponent implements OnInit {
     return this.todoservice.getAllTodos();
   }
 
-  initiateAddtodo(flag:boolean=true){
+  initiateAddtodo(flag: boolean = true) {
     this.addTodoInitiated = flag;
   }
 
-  submitAddtodo(flag:boolean=false){
+  submitAddtodo(flag: boolean = false) {
     this.addTodoFormSubmitted = flag;
   }
 
-  showTodoForm(){
+  showTodoForm() {
     this.submitAddtodo(false);
     this.initiateAddtodo(true);
   }
 
-  todoAddSubmit(tForm: NgForm){
+  todoAddSubmit(tForm: NgForm) {
     // console.log(this)
-    let data = {desc:'',checked:false};
+    let data = { desc: '', checked: false , time:Date.now()};
     data.desc = tForm.value.desc;
     data.checked = tForm.value.checked;
+    // data.time = ;
     this.addTodo(data);
+    this.todos.push(data);
     this.submitAddtodo(true);
     this.initiateAddtodo(false);
     tForm.reset();
   }
   readData() {
-    this.afs.firestore.collection('todos').get().then(aa =>{
-       console.log(aa);
-       var i = 1;
-      aa.forEach((doc: any) =>  {
-        console.log(doc)
-        setTimeout(() => {
-          this.todos.push(doc.data());
-          // this.todosAsync$.
-          // console.log(doc.id, "is the id and the data is ", doc.data());
-        },500 * i);
-        i++;
+    this.afs.firestore.collection('todos').orderBy('time').get().then(aa => {
+      console.log(aa);
+      //  var i = 1;
+      aa.forEach((doc: any) => {
+
+        let docWithId = {
+          id: doc.id,
+          desc: doc.data().desc,
+          checked: doc.data().checked
+        }
+        this.todos.push(docWithId);
       });
     });
+  }
+
+  onClick() {
+    this.editable = true;
+  }
+  onFocusin() {
+
+  }
+
+  onFocusout() {
+
+  }
+  focusoutParent(t) {
+    console.log(t);
+    let docWithId = {
+      id: t.id,
+      checked: t.children[0].checked,
+      desc: t.children[1].value
+    }
+    // this.addTodo(docWithId);
+    this.updateTodo(docWithId);
+  }
+
+  onMouseOver(){
+
+  }
+  onDeleteClick(t){
+      this.deleteTodo(t.id, t.getAttribute('data-index'))
+  }
+
+  deleteTodo(id: string, index?:number) {
+    this.afs.firestore.collection('todos').doc(id).delete();
+    this.todos.splice(index, 1);
   }
 
   addTodo(f) {
@@ -89,19 +129,18 @@ export class TodoComponent implements OnInit {
     })
   }
 
-  updateTodo() {
+  updateTodo(data) {
     // this.afs.firestore.collection('todos/171ysJlncEnowVjSjNbb')
     // this.afs.firestore.collection('todos').where('id', '==','171ysJlncEnowVjSjNbb')
     let docid = '171ysJlncEnowVjSjNbb';
-    this.afs.firestore.collection('todos').doc(docid)
-    .get()
-      .then(a => {
-        console.log(a.data());
-      })
-      .catch(e => {
-        debugger;
-        console.log(e);
-      })
+    this.afs.firestore.collection('todos').doc(data.id)
+      .set({
+        checked: data.checked,
+        desc: data.desc
+      },
+        { merge: true });
+    // .get().then(a => {console.log(a.data());})
+    // .catch(e => {console.log(e);})
     // where('id','==','')
 
   }
@@ -122,6 +161,25 @@ export class TodoComponent implements OnInit {
 
   getTodobyID(id: number): Todo {
     return null;
+  }
+
+  onKeyDown(event){
+    if(event.keyCode == 40){
+      console.log(event.target.parentElement.nextElementSibling.firstElementChild.nextElementSibling);
+      event.target.parentElement.nextElementSibling?.firstElementChild?.nextElementSibling?.focus();
+    }else if(event.keyCode == 38){
+      // console.log(event.target.parentElement.previousElementSibling.firstElementChild.nextElementSibling);
+      event.target.parentElement.previousElementSibling?.firstElementChild?.nextElementSibling?.focus();
+    }
+
+
+  }
+  onKeyUp(event){
+    console.log(event);
+    if(event.keyCode == 40){
+      // console.log(event).target.parentElement.previousElementSibling.firstElementChild.nextElementSibling);
+      // event.target.parentElement.previousElementSibling?.firstElementChild?.nextElementSibling?.focus();
+    }
   }
 }
 

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Todo } from '../interface/todo';
 import { AngularFirestore } from '@angular/fire/firestore';
+import { environment } from '../../environments/environment';
 // import {  } from '@angular/fire';
 
 @Injectable({
@@ -13,17 +14,22 @@ export class TodoServicesService {
     { id: 3, desc: ' Todo 345', checked: false },
     { id: 4, desc: ' Todo3', checked: false }
   ];
-  constructor(private readonly afs : AngularFirestore) { }
+  constructor(private readonly afs: AngularFirestore) { }
+
+  getMyEnvironmentValue() {
+    return environment.myValue;
+  }
 
   getAllTodos() {
     return this.todos;
   }
 
-  getAllTodoFromFirebase(){
+  getAllTodoFromFirebase() {
     return this.afs.collection('/todos').get();
     // return this.afs.firestore.collection('/todos').get();
     // return null;
   }
+
 
 
 }
