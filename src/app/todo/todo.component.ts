@@ -4,7 +4,7 @@ import { TodoServicesService } from '../services/todo-services.service';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { FormBuilder, FormGroup, FormControl, NgForm } from '@angular/forms';
 import { Observable, interval } from 'rxjs';
-import { Timestamp } from 'rxjs/internal/operators/timestamp';
+import { DateOptionPipe } from '../date-option.pipe';
 
 
 @Component({
@@ -25,9 +25,11 @@ export class TodoComponent implements OnInit {
   @ViewChild('tForm') todoFormRef: NgForm;
   editable: boolean = false;
   myEnvironemntValue: string;
+  dValue = Date.now();
   constructor(private todoservice: TodoServicesService,
     private readonly afs: AngularFirestore,
-    ) {
+    // public dataOption : DateOptionPipe
+  ) {
     console.log(afs);
   }
 
@@ -62,7 +64,7 @@ export class TodoComponent implements OnInit {
 
   todoAddSubmit(tForm: NgForm) {
     // console.log(this)
-    let data = { desc: '', checked: false , time:Date.now()};
+    let data = { desc: '', checked: false, time: Date.now() };
     data.desc = tForm.value.desc;
     data.checked = tForm.value.checked;
     // data.time = ;
@@ -109,14 +111,14 @@ export class TodoComponent implements OnInit {
     this.updateTodo(docWithId);
   }
 
-  onMouseOver(){
+  onMouseOver() {
 
   }
-  onDeleteClick(t){
-      this.deleteTodo(t.id, t.getAttribute('data-index'))
+  onDeleteClick(t) {
+    this.deleteTodo(t.id, t.getAttribute('data-index'))
   }
 
-  deleteTodo(id: string, index?:number) {
+  deleteTodo(id: string, index?: number) {
     this.afs.firestore.collection('todos').doc(id).delete();
     this.todos.splice(index, 1);
   }
@@ -163,23 +165,28 @@ export class TodoComponent implements OnInit {
     return null;
   }
 
-  onKeyDown(event){
-    if(event.keyCode == 40){
+  onKeyDown(event) {
+    if (event.keyCode == 40) {
       console.log(event.target.parentElement.nextElementSibling.firstElementChild.nextElementSibling);
       event.target.parentElement.nextElementSibling?.firstElementChild?.nextElementSibling?.focus();
-    }else if(event.keyCode == 38){
+    } else if (event.keyCode == 38) {
       // console.log(event.target.parentElement.previousElementSibling.firstElementChild.nextElementSibling);
       event.target.parentElement.previousElementSibling?.firstElementChild?.nextElementSibling?.focus();
     }
 
 
   }
-  onKeyUp(event){
+  onKeyUp(event) {
     console.log(event);
-    if(event.keyCode == 40){
+    if (event.keyCode == 40) {
       // console.log(event).target.parentElement.previousElementSibling.firstElementChild.nextElementSibling);
       // event.target.parentElement.previousElementSibling?.firstElementChild?.nextElementSibling?.focus();
     }
+  }
+
+  getDateValue(a) {
+    // console.log(this.dataOption.transform(Date.now()))
+    return new DateOptionPipe().transform(Date.now());
   }
 }
 

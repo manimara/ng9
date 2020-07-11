@@ -16,6 +16,7 @@
     <input name="desc" class="" [value]="todo.desc"
     (change)="focusoutParent(f)"
      />
+     <input type="date" name="" createDate="">
     <div class="delete-btn">
       <span (click)="onDeleteClick(f)">X</span>
     </div>
@@ -33,6 +34,7 @@
       </div>
     </form>
     <button (click)="showTodoForm()">Add new Todo</button>
+    <div>{{dValue | dateOption }}</div>
   </div>
   <!-- <button (click)="updateTodo()">Update Value1</button> -->
 </div>

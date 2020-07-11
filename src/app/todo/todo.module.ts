@@ -2,7 +2,8 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TodoComponent } from './todo.component';
 import { Routes, RouterModule } from '@angular/router';
-import {  FormsModule } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
+import { DateOptionPipe } from '../date-option.pipe'
 // import { TodoServicesService } from '../services/todo-services.service';
 
 const routes: Routes = [
@@ -12,7 +13,8 @@ const routes: Routes = [
   }
 ]
 @NgModule({
-  declarations: [TodoComponent],
+  declarations: [TodoComponent,
+    DateOptionPipe],
   imports: [
     CommonModule,
     // TodoServicesService,
