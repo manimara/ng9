@@ -11,8 +11,7 @@ import { Router} from '@angular/router'
 export class LoginComponent implements OnInit {
   loginUserForm: FormGroup;
   userLoggedIn : boolean = false;
-  constructor(private authService: AuthService) { }
-  router: Router;
+  constructor(private authService: AuthService, private router: Router) {}
   ngOnInit(): void {
     this.loginUserForm = new FormGroup({
       username: new FormControl(''),
