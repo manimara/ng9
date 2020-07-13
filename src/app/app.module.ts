@@ -15,6 +15,8 @@ import { environment } from '../environments/environment';
 
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { AuthModule } from './auth/auth.module';
+import { AuthService } from './services/auth.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,10 +31,12 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
     ReactiveFormsModule,
     MatPaginatorModule,
     AngularFireModule.initializeApp(environment.firebase),
-    AngularFirestoreModule
+    AngularFirestoreModule,
+    AuthModule
   ],
   providers: [
-    LocalStorageService
+    LocalStorageService,
+    AuthService
   ],
   bootstrap: [AppComponent]
 })

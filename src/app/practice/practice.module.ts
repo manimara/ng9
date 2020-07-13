@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { TemplateFormComponent } from './template-form/template-form.component';
 import { PracticeComponent } from './practice.component';
 import { Routes, RouterModule } from '@angular/router';
-import { FormsModule, NgForm, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ReactivComponent } from './reactiv/reactiv.component';
 import { MatPaginatorModule } from '@angular/material/paginator';
 

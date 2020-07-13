@@ -11,15 +11,18 @@ const routes: Routes = [
   {
     path: 'heros',
     loadChildren: () => import('./heros/heros.module').then(m => m.HerosModule),
-    data :{
-      animations : 'heros'
+    data: {
+      animations: 'heros'
     }
+  }, {
+    path: 'auth',
+    loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule)
   },
   {
     path: 'hero',
     loadChildren: () => import('./heros/heros.module').then(m => m.HerosModule),
-    data :{
-      animations : 'hero'
+    data: {
+      animations: 'hero'
     }
   },
   {
@@ -42,8 +45,11 @@ const routes: Routes = [
 @NgModule({
   imports: [RouterModule.forRoot(
     routes,
-    // { enableTracing: true }
-    )],
+    {
+      useHash: false,
+      enableTracing: true
+    }
+  )],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
