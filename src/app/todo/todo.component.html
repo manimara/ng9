@@ -24,7 +24,7 @@
   <!-- <div>{{count}}</div> -->
 
   <!-- <button (click)="todoAddSubmit(tForm)"> Add Todo Submit</button> -->
-
+<button (click)="getValueFromStub()" >Get value from http</button>
   <div>
     <form #tForm="ngForm" (submit)="todoAddSubmit(tForm)">
       <div *ngIf="addTodoInitiated && !addTodoFormSubmitted">
@@ -34,7 +34,7 @@
       </div>
     </form>
     <button (click)="showTodoForm()">Add new Todo</button>
-    <div>{{dValue | dateOption }}</div>
+    <!-- <div>{{dValue | dateOption }}</div> -->
   </div>
   <!-- <button (click)="updateTodo()">Update Value1</button> -->
 </div>

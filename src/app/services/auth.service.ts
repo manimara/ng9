@@ -8,7 +8,7 @@ import { Subject } from 'rxjs';
 })
 export class AuthService {
   loginSubject : Subject<boolean> = new Subject<boolean>();
-
+  constructor() { }
   public getToken(): string {
     return localStorage.getItem('jwt-token');
     // return null;
@@ -33,9 +33,10 @@ export class AuthService {
     return null;
   }
 
-  public logout(user, pass) {
+  public logout() {
     this.clearToken();
   }
+
   private clearToken() {
     localStorage.removeItem('jwt-token');
     localStorage.removeItem('user');
@@ -52,5 +53,5 @@ export class AuthService {
   }
 
 
-  constructor() { }
+
 }

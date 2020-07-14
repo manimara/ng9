@@ -6,7 +6,6 @@ import { FormBuilder, FormGroup, FormControl, NgForm } from '@angular/forms';
 import { Observable, interval } from 'rxjs';
 import { DateOptionPipe } from '../date-option.pipe';
 
-
 @Component({
   selector: 'app-todo',
   templateUrl: './todo.component.html',
@@ -187,6 +186,9 @@ export class TodoComponent implements OnInit {
   getDateValue(a) {
     // console.log(this.dataOption.transform(Date.now()))
     return new DateOptionPipe().transform(Date.now());
+  }
+  getValueFromStub(){
+    this.todoservice.getTodosfromHttp();
   }
 }
 

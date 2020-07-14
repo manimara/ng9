@@ -3,7 +3,8 @@ import { CommonModule } from '@angular/common';
 import { TodoComponent } from './todo.component';
 import { Routes, RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
-import { DateOptionPipe } from '../date-option.pipe'
+import { DateOptionPipe } from '../date-option.pipe';
+import { HttpClientModule} from '@angular/common/http';
 // import { TodoServicesService } from '../services/todo-services.service';
 
 const routes: Routes = [
@@ -19,7 +20,8 @@ const routes: Routes = [
     CommonModule,
     // TodoServicesService,
     RouterModule.forChild(routes),
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ]
 })
 export class TodoModule { }

@@ -33,4 +33,8 @@ export class LoginComponent implements OnInit {
     this.authService.login(v.username, v.password);
   }
 
+  logout(){
+    this.authService.logout();
+  }
+
 }

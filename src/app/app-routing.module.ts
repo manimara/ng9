@@ -46,8 +46,8 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(
     routes,
     {
-      useHash: false,
-      enableTracing: true
+      // useHash: false,
+      // enableTracing: true
     }
   )],
   exports: [RouterModule]
