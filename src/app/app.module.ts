@@ -17,10 +17,16 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AuthModule } from './auth/auth.module';
 import { AuthService } from './services/auth.service';
 import { TokenInterceptor } from './services/token-interceptor.service';
+import { StoreModule } from '@ngrx/store';
+import { reducers, metaReducers } from './reducers';
+import { MyCounterComponent } from './my-counter/my-counter.component';
+import { counterReducer } from './counter/counter.reducer';
+
 @NgModule({
   declarations: [
     AppComponent,
     MainComponent,
+    MyCounterComponent,
   ],
   imports: [
     BrowserModule,
@@ -32,7 +38,10 @@ import { TokenInterceptor } from './services/token-interceptor.service';
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
     AuthModule,
-    HttpClientModule
+    HttpClientModule,
+    StoreModule.forRoot({
+      count : counterReducer
+    })
   ],
   providers: [
     LocalStorageService,

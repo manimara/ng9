@@ -1,3 +1,4 @@
+import { MyCounterComponent } from './my-counter/my-counter.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { MainComponent } from './main/main.component';
@@ -10,7 +11,12 @@ const routes: Routes = [
     data: {
       animations: 'heros'
     }
-  }, {
+  },
+  {
+    path:'ngrx',
+    component: MyCounterComponent
+  },
+  {
     path: 'auth',
     loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule)
   },
@@ -32,7 +38,7 @@ const routes: Routes = [
   { path: '**', component: MainComponent },
   {
     path: '',
-    redirectTo: '/tw',
+    redirectTo: 'ngrx',
     pathMatch: 'full'
   },
 
