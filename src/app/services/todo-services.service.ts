@@ -33,7 +33,7 @@ export class TodoServicesService {
   }
 
   getTodosfromHttp(){
-    this.http.get('http://stubonweb.herokuapp.com/todos')
+    this.http.get('//stubonweb.herokuapp.com/todos')
       .subscribe((a) => console.log(a));
   }
 
