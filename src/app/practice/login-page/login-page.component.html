@@ -1,0 +1,18 @@
+<p>login-page works!</p>
+<div>{{login$| async | json}}</div>
+<div>
+  <span>count</span>
+  <span>{{count$| async}}</span>
+</div>
+<form (submit)="onSubmit()" [formGroup]="userLoginForm">
+  <div>
+    <label for="username">Username :</label>
+    <input type="text" formControlName="username">
+  </div>
+
+  <div>
+    <label for="password">Password :</label>
+    <input type="password" formControlName="password">
+  </div>
+  <button >Login</button>
+</form>

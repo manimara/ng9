@@ -34,15 +34,6 @@ export class PracticeComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    this.count$.subscribe( a => {
-      this.count = a;
-      console.log(a);
-    }, (e) => {
-      console.log(e);
-      console.log(e.message);
-    }, () => {
-      console.log(`Observable is completed`);
-    } )
 
   }
 

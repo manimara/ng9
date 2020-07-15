@@ -18,9 +18,9 @@ import { AuthModule } from './auth/auth.module';
 import { AuthService } from './services/auth.service';
 import { TokenInterceptor } from './services/token-interceptor.service';
 import { StoreModule } from '@ngrx/store';
-import { reducers, metaReducers } from './reducers';
 import { MyCounterComponent } from './my-counter/my-counter.component';
 import { counterReducer } from './counter/counter.reducer';
+import { LoginReducer } from './practice/login-page.reducer';
 
 @NgModule({
   declarations: [
@@ -40,7 +40,8 @@ import { counterReducer } from './counter/counter.reducer';
     AuthModule,
     HttpClientModule,
     StoreModule.forRoot({
-      count : counterReducer
+      count : counterReducer,
+      login: LoginReducer
     })
   ],
   providers: [

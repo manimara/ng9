@@ -6,6 +6,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ReactivComponent } from './reactiv/reactiv.component';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { LoginPageComponent } from './login-page/login-page.component';
 
 const routes: Routes = [{
   path: '',
@@ -14,6 +15,9 @@ const routes: Routes = [{
 {
   path: 'reactive',
   component: ReactivComponent
+}, {
+  path: 'store',
+  component: LoginPageComponent
 },
 {
   path: 'template',
@@ -21,13 +25,18 @@ const routes: Routes = [{
 }]
 
 @NgModule({
-  declarations: [TemplateFormComponent, PracticeComponent, ReactivComponent],
+  declarations: [TemplateFormComponent,
+    PracticeComponent,
+    ReactivComponent,
+    LoginPageComponent
+  ],
   imports: [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
     RouterModule.forChild(routes),
     MatPaginatorModule,
+
   ]
 })
 export class PracticeModule { }
