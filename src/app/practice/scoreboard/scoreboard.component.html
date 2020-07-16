@@ -1,0 +1,13 @@
+<p>scoreboard works!</p>
+
+<div>
+  <span>game</span>
+  <span>{{game$| async | json}}</span>
+</div> (click)="clickEventHandler()"
+
+<div>
+  <div> <button (click)="home()" >Home</button></div>
+  <div> <button (click)="away()" >Away</button></div>
+  <div> <button (click)="reset()" >Reset</button></div>
+  <div> <button (click)="setScore()" >Set score</button></div>
+</div>

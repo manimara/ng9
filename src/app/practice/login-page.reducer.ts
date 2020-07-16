@@ -1,4 +1,3 @@
-import { initialState } from './../counter/counter.reducer';
 import { createReducer, on } from '@ngrx/store';
 import { login, logout } from './login-page.actions';
 

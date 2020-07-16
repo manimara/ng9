@@ -21,6 +21,7 @@ import { StoreModule } from '@ngrx/store';
 import { MyCounterComponent } from './my-counter/my-counter.component';
 import { counterReducer } from './counter/counter.reducer';
 import { LoginReducer } from './practice/login-page.reducer';
+import { scoreBoardReducer } from './practice/scoreboard/scoreboard.reducer';
 
 @NgModule({
   declarations: [
@@ -38,10 +39,12 @@ import { LoginReducer } from './practice/login-page.reducer';
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
     AuthModule,
+    PracticeModule,
     HttpClientModule,
     StoreModule.forRoot({
       count : counterReducer,
-      login: LoginReducer
+      login: LoginReducer,
+      game : scoreBoardReducer
     })
   ],
   providers: [

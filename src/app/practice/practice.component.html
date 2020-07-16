@@ -5,16 +5,18 @@
 <div>
   <a routerLink="template">Template Form</a>
 </div>
+<div>
+  <a routerLink="scoreboard">Scoreboard</a>
+</div>
   <div>
     <a routerLink="reactive">Reactive</a>
   </div>
 <router-outlet></router-outlet>
-<span>{{count}}</span>
-<mat-paginator
+<app-scoreboard></app-scoreboard>
+<!-- <span>{{count}}</span> -->
+<!-- <mat-paginator
 [length]="100"
 [pageSize]="5"
 [pageSizeOptions]="[5,10,15,20]"
 >
-
-
-</mat-paginator>
+</mat-paginator> -->
