@@ -27,4 +27,6 @@
   },
   {
     name: 'The Lord of the Rings', year: 2001, rating: 8.8
-  },}
+  }
+ ]
+}
