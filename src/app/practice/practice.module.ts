@@ -1,3 +1,4 @@
+import { GenericService } from './../services/generic.service';
 import { StoreModule } from '@ngrx/store';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -10,6 +11,8 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { LoginPageComponent } from './login-page/login-page.component';
 import { ScoreboardComponent } from './scoreboard/scoreboard.component';
 import * as ScoreBoard from './scoreboard/scoreboard.reducer';
+import { MoviesPageComponent } from './movies-page/movies-page.component';
+
 
 const routes: Routes = [{
   path: '',
@@ -30,6 +33,10 @@ const routes: Routes = [{
   path: 'template',
   component: TemplateFormComponent
 },
+{
+  path: 'movies',
+  component: MoviesPageComponent
+},
 ]
 
 @NgModule({
@@ -37,7 +44,8 @@ const routes: Routes = [{
     PracticeComponent,
     ReactivComponent,
     LoginPageComponent,
-    ScoreboardComponent
+    ScoreboardComponent,
+    MoviesPageComponent
   ],
   imports: [
     CommonModule,
@@ -49,7 +57,9 @@ const routes: Routes = [{
       ScoreBoard.scoreboardFeatureKey,
       ScoreBoard.scoreBoardReducer
     )
-
+  ],
+  providers: [
+    GenericService
   ]
 })
 export class PracticeModule { }
