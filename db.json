@@ -1,5 +1,5 @@
 {
- movies = [
+ movies : [
   {
     name: 'The Redemption', year: 1994, rating: 9.2
   },
