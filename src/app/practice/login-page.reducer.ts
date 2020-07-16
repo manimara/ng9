@@ -4,7 +4,9 @@ import { login, logout } from './login-page.actions';
 
 const initialLoginState = {
   uid: '',
-  loggedin: false
+  loggedin: false,
+  evenNums:[ 2,4,6],
+  oddNums:[ 1,3,5],
 };
 const _loginReducer = createReducer(initialLoginState,
   on(login, (state, {username} ) => ({...state, uid: username, loggedin: true })),

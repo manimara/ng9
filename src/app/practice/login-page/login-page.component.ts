@@ -1,3 +1,4 @@
+import { selectTotal } from './../login-page.selectors';
 import { selectFeatureUid, selectFeatureUsername } from './../../select/index';
 import { Observable } from 'rxjs';
 import { Store, select } from '@ngrx/store';
@@ -14,18 +15,21 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 export class LoginPageComponent implements OnInit {
   login$: Observable<any>;
   count$: Observable<number>;
-  userLoginForm : FormGroup;
+  userLoginForm: FormGroup;
+  userid$: Observable<any>;
+  total$: Observable<number>;
 
-  constructor(private store:Store<{count:number, login}>) {
+  constructor(private store: Store<{ count: number, login }>) {
     this.login$ = store.pipe(select('login'));
-    // this.feature$ = store.pipe(select('feature'));
+    // this.userid$ = this.login$.pipe(select('uid'))
     this.count$ = store.pipe(select('count'));
-   }
+    this.total$ = store.pipe(select(selectTotal));
+  }
 
   ngOnInit(): void {
     this.userLoginForm = new FormGroup({
-      'username': new FormControl('',[Validators.required]),
-      'password': new FormControl('',[Validators.required])
+      'username': new FormControl('', [Validators.required]),
+      'password': new FormControl('', [Validators.required])
     })
   }
 
@@ -33,12 +37,13 @@ export class LoginPageComponent implements OnInit {
   //   this.store.dispatch(login({username:username,password:password}))
   // }
 
-  onSubmit(){
+  onSubmit() {
     this.store.dispatch(
       login({
-        username:this.userLoginForm.value.username,
-        password:this.userLoginForm.value.password})
-      );
-      this.userLoginForm.reset();
+        username: this.userLoginForm.value.username,
+        password: this.userLoginForm.value.password
+      })
+    );
+    this.userLoginForm.reset();
   }
 }
