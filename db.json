@@ -1,32 +1,25 @@
 {
- movies : [
-  {
-    name: 'The Redemption', year: 1994, rating: 9.2
-  },
-  {
-    name: 'Godfather, year', year: 1994, rating: 9.1
-  },
-  {
-    name: 'Godfather: Part II', year: 1974, rating: 9.0
-  },
-  { name: 'Dark Knight', year: 2008, rating: 9.0 },
-  {
-    name: 'Angry Men', year: 1957, rating: 8.9
-  },
-  {
-    name: 'Schindlers List', year: 1993, rating: 8.9
-  },
-  {
-    name: 'The Lord of the Rings', year: 2003, rating: 8.9
-  },
-  {
-    name: 'Pulp Fiction', year: (1994), rating: 8.8
-  },
-  {
-    name: 'The Good, the Bad and the Ugly', year: (1966), rating: 8.8
-  },
-  {
-    name: 'The Lord of the Rings', year: 2001, rating: 8.8
-  }
- ]
-}
+  "movies" : [
+   {
+     "name": "The Redemption", "year": 1994, "rating": 9.2
+   },{
+     "name": "Godfather", "year": 1994, "rating": 9.1
+   },{
+     "name": "Godfather: Part II", "year": 1974, "rating": 9.0
+   },{ "name": "Dark Knight", "year": 2008, "rating": 9.0 },
+   {
+     "name": "Angry Men", "year": 1957, "rating": 8.9
+   },{
+     "name": "Schindlers List", "year": 1993, "rating": 8.9
+   },{
+     "name": "The Lord of the Rings", "year": 2003, "rating": 8.9
+   },{
+     "name": "Pulp Fiction", "year": 1994, "rating": 8.8
+   },{
+     "name": "The Good, the Bad and the Ugly", "year": 1966, "rating": 8.8
+   },{
+     "name": "The Lord of the Rings", "year": 2001, "rating": 8.8
+   }
+  ]
+ }
+ 
