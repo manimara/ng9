@@ -1,3 +1,4 @@
+import { HttpClientModule } from '@angular/common/http';
 import { GenericService } from './../services/generic.service';
 import { StoreModule } from '@ngrx/store';
 import { NgModule } from '@angular/core';
@@ -11,7 +12,10 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { LoginPageComponent } from './login-page/login-page.component';
 import { ScoreboardComponent } from './scoreboard/scoreboard.component';
 import * as ScoreBoard from './scoreboard/scoreboard.reducer';
+import * as MoviePage from './movies-page/movies.reducer';
 import { MoviesPageComponent } from './movies-page/movies-page.component';
+import { EffectsModule } from '@ngrx/effects';
+import { MoviesEffects } from './movies-page/movies.effects';
 
 
 const routes: Routes = [{
@@ -53,13 +57,19 @@ const routes: Routes = [{
     ReactiveFormsModule,
     RouterModule.forChild(routes),
     MatPaginatorModule,
+    HttpClientModule,
     StoreModule.forFeature(
       ScoreBoard.scoreboardFeatureKey,
       ScoreBoard.scoreBoardReducer
-    )
+    ),
+    StoreModule.forFeature(
+      MoviePage.MoviesPageFeature,
+      MoviePage.moviesReducer
+    ),
+    EffectsModule.forFeature([MoviesEffects])
   ],
   providers: [
-    GenericService
+    GenericService,
   ]
 })
 export class PracticeModule { }

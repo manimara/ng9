@@ -9,8 +9,7 @@ export class GenericService {
   constructor(private _http: HttpClient) { }
 
   getAllMovies(){
-    // return movies;
-    return this._http.get(this.MOVIES_URL);
+    return this._http.get<Movie[]>(this.MOVIES_URL);
   }
 }
 

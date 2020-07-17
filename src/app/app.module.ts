@@ -24,6 +24,7 @@ import { counterReducer } from './counter/counter.reducer';
 import { LoginReducer } from './practice/login-page.reducer';
 import { scoreBoardReducer } from './practice/scoreboard/scoreboard.reducer';
 import { Action } from 'rxjs/internal/scheduler/Action';
+import { EffectsModule } from '@ngrx/effects';
 
 
 @NgModule({
@@ -48,7 +49,8 @@ import { Action } from 'rxjs/internal/scheduler/Action';
       count : counterReducer,
       login: LoginReducer,
       game : scoreBoardReducer
-    })
+    }),
+    EffectsModule.forRoot([])
   ],
   providers: [
     LocalStorageService,
@@ -58,7 +60,12 @@ import { Action } from 'rxjs/internal/scheduler/Action';
       useClass: TokenInterceptor,
       multi: true
     },
-    GenericService
+    GenericService,
+    // {
+    //   provide: USER_PROVIDED_EFFECTS,
+    //   useClass: MoviesEffects,
+    //   multi: true
+    // }
   ],
   bootstrap: [AppComponent]
 })
