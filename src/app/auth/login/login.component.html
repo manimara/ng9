@@ -2,12 +2,12 @@
 <form novalidate [formGroup]="loginUserForm" (ngSubmit)="onSubmit()" *ngIf="!userLoggedIn" >
   <div id="login-form">
   <div>
-    <label for="">Username :</label>
-    <input type="text" formControlName="username">
+    <span for="" class="label">Username</span>
+    <span class="input"><input type="text" formControlName="username" ></span>
   </div>
   <div>
-    <label for="">Password :</label>
-    <input type="password" formControlName="password">
+    <span for="" class="label">Password </span>
+    <span class="input"><input type="password" formControlName="password" class="input"></span>
   </div>
   <div>
     <button>Login</button>

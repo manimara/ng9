@@ -1,4 +1,15 @@
 #login-form div{
-  display: grid;
-  justify-content: center;
+  x-display: grid;
+  x-justify-content: center;
+}
+
+.label{
+  width: 200px;
+  display: inline-block;
+}
+span.label::after {
+  content: ":";
+}
+span.input::before {
+  content: ":";
 }

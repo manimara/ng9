@@ -1,7 +1,11 @@
 <p>movies-page works!</p>
 <!-- <span>{{movies$ }}</span> -->
 <!-- <span>{{value1$|async |json}}</span> -->
-<div  *ngFor="let movie of movies">
+<!-- <div *ngFor="let movie of movies">
   <span>{{movie.name}}</span>
+</div> -->
+<div *ngIf="moviesObservables$ | async as moviesObservables">
+  <div *ngFor="let movie of moviesObservables['movies']">
+    <span>{{movie.name}}</span>
+  </div>
 </div>
-

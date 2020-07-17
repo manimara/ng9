@@ -15,7 +15,7 @@ import { selectMovies } from './movies.selectors'
 export class MoviesPageComponent implements OnInit, OnDestroy {
   movies$: Subscription;
   a: any;
-  // movies$: Observable<Movie[]>;
+  moviesObservables$: Observable<Movie[]>;
   movies: Movie[];
   value1$: Observable<any> = this.store.select(state => state.movies);
   constructor(private store: Store<{ movies: Movie[] }>) {
@@ -34,10 +34,10 @@ export class MoviesPageComponent implements OnInit, OnDestroy {
   }
 
   loadMovies() {
-    //  this.movies$ = this.store.pipe(select('movies'));
-    this.movies$ = this.store.pipe(select('movies')).subscribe(a => {
-      this.movies = a['movies'];
-    });
+    this.moviesObservables$ = this.store.pipe(select('movies'));
+    // this.movies$ = this.store.pipe(select('movies')).subscribe(a => {
+      // this.movies = a['movies'];
+    // });
     //  this.movies$ = this.store.pipe(select(selectMovies));
   }
 
